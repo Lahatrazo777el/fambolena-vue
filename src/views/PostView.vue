@@ -1,0 +1,131 @@
+<script setup>
+import { ref } from 'vue';
+
+const productName = ref('');
+const price = ref(0.00);
+const isAvailable = ref(true);
+const imageFile = ref(null);
+
+const selectImage = () => {
+  alert('Fonctionnalité de sélection d\'image');
+  // Ici tu pourrais utiliser un <input type="file"> ou un composant de drag & drop
+};
+
+const publishProduct = () => {
+  if (!productName.value) {
+    alert('Veuillez saisir un nom de produit');
+    return;
+  }
+
+  const message = `Produit publié avec succès!\n\nNom: ${productName.value}\nPrix: ${price.value.toFixed(2)} Ar\nDisponible: ${isAvailable.value ? 'Oui' : 'Non'}`;
+  alert(message);
+};
+</script>
+
+<template>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-store"></i> Publication</h1>
+      <div class="subtitle">Publiez votre produit sur le marché</div>
+    </header>
+
+    <!-- Image Upload -->
+    <div class="section">
+      <div class="section-title"><i class="fas fa-image"></i> Image du produit</div>
+      <div class="image-upload" @click="selectImage">
+        <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <div class="upload-text">Ajouter une image</div>
+        <div class="upload-subtext">PNG, JPG (max ~10MB)</div>
+      </div>
+    </div>
+
+    <!-- Product Name -->
+    <div class="section">
+      <div class="input-group">
+        <label for="product-name"><i class="fas fa-tag"></i> Produit</label>
+        <input type="text" id="product-name" v-model="productName" placeholder="Ex : Riz, Tomates, Vanille...">
+        <div class="example-list">Ex: Riz, Tomates, Vanille, Laitue, Pommes de terre...</div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="section">
+      <div class="section-title"><i class="fas fa-money-bill-wave"></i> Prix</div>
+      <div class="price-container">
+        <input type="number" class="price-input" v-model.number="price" step="0.01" min="0">
+        <div class="price-currency">Ar</div>
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="section">
+      <div class="availability-toggle">
+        <label class="toggle-label"><i class="fas fa-box-open"></i> Disponible</label>
+        <label class="switch">
+          <input type="checkbox" v-model="isAvailable">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="example-list">Active si le produit est en stock.</div>
+    </div>
+
+    <!-- Publish Button -->
+    <div class="section">
+      <button class="publish-button" @click="publishProduct">
+        <i class="fas fa-paper-plane"></i> Publier
+      </button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+/* Copie le CSS original et adapte les interactions Vue */
+
+.container { max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; }
+header { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 25px; text-align: center; }
+h1 { font-size: 24px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+h1 i { margin-right: 10px; }
+.subtitle { font-size: 16px; opacity: 0.9; }
+
+.section { padding: 20px 25px; border-bottom: 1px solid #eaecef; }
+.section:last-child { border-bottom: none; }
+.section-title { font-size: 18px; color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center; }
+.section-title i { margin-right: 10px; color: #9b59b6; }
+
+.image-upload { border: 2px dashed #ddd; border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s ease; margin-bottom: 15px; }
+.image-upload:hover { border-color: #9b59b6; background-color: #f8f9fa; }
+.upload-icon { font-size: 40px; color: #9b59b6; margin-bottom: 15px; }
+.upload-text { font-weight: 600; color: #2c3e50; margin-bottom: 8px; }
+.upload-subtext { color: #7f8c8d; font-size: 14px; }
+
+.input-group { margin-bottom: 20px; }
+label { display: flex; font-weight: 600; color: #2c3e50; margin-bottom: 8px; align-items: center; }
+label i { margin-right: 10px; color: #9b59b6; }
+input[type="text"], select, input[type="number"] { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; background-color: #f8f9fa; }
+
+.price-container { display: flex; align-items: center; margin: 15px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px; }
+.price-input { flex: 1; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 18px; font-weight: 600; text-align: right; background-color: white; }
+.price-currency { margin-left: 15px; font-size: 18px; font-weight: 700; color: #2c3e50; }
+
+.availability-toggle { display: flex; align-items: center; justify-content: space-between; margin: 20px 0; padding: 15px; background-color: #f4eef8; border-radius: 8px; }
+.toggle-label { display: flex; align-items: center; margin: 0; }
+
+.switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: #2ecc71; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+.publish-button { display: block; width: 100%; padding: 15px; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-align: center; margin-top: 10px; }
+.publish-button:hover { background: linear-gradient(135deg, #8e44ad, #9b59b6); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+.example-list { font-size: 14px; color: #7f8c8d; margin-top: 5px; margin-left: 34px; }
+
+@media (max-width: 600px) {
+  header { padding: 20px; }
+  h1 { font-size: 20px; }
+  .section { padding: 15px 20px; }
+  .image-upload { padding: 20px; }
+}
+</style>

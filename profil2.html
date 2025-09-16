@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - John Mitchell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            margin: 0 auto 15px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .profile-img i {
+            font-size: 60px;
+            color: #27ae60;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .title {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #2ecc71;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-type {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .contact-value {
+            color: #7f8c8d;
+        }
+        
+        section {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e9;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+        
+        .pref-item {
+            margin-bottom: 25px;
+        }
+        
+        .pref-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: #34495e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+        
+        p {
+            color: #7f8c8d;
+            margin-left: 34px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            border: 1px solid #eaecef;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+        
+        .btn:hover {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn:hover i {
+            color: white;
+        }
+        
+        .logout {
+            color: #e74c3c;
+        }
+        
+        .logout i {
+            color: #e74c3c;
+        }
+        
+        .logout:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .logout:hover i {
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .title {
+                font-size: 16px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>John Mitchell</h1>
+            <div class="title">Fermier</div>
+        </header>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-type">Email</div>
+                    <div class="contact-value">john@greenfarm.com</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-type">Téléphone</div>
+                    <div class="contact-value">+261 XX XX XXX XX</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-type">Localisation</div>
+                    <div class="contact-value">Antananarivo</div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="preferences">
+            <h2><i class="fas fa-sliders-h"></i> Préférences</h2>
+            
+            <div class="pref-item">
+                <h3><i class="fas fa-bell"></i> Notifications</h3>
+                <p>Gérez vos paramètres de notifications</p>
+                <a href="#" class="btn">Modifier les préférences</a>
+            </div>
+            
+            <div class="pref-item">
+                <h3><i class="fas fa-tractor"></i> Paramètres de l'exploitation</h3>
+                <p>Configurez les détails de votre exploitation</p>
+                <a href="#" class="btn">Configurer l'exploitation</a>
+            </div>
+        </section>
+        
+        <section class="support">
+            <h2><i class="fas fa-question-circle"></i> Support</h2>
+            
+            <div class="pref-item">
+                <h3><i class="fas fa-life-ring"></i> Centre d'aide</h3>
+                <p>Obtenez de l'aide et du support</p>
+                <a href="#" class="btn">Accéder au centre d'aide</a>
+            </div>
+        </section>
+        
+        <section class="account">
+            <h2><i class="fas fa-user-cog"></i> Compte</h2>
+            
+            <div class="pref-item">
+                <a href="#" class="btn logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Simple interaction for demonstration
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (!this.classList.contains('logout')) {
+                    e.preventDefault();
+                    alert('Fonctionnalité en cours de développement');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

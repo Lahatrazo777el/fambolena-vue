@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Agricole</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .welcome-card {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 25px;
+        }
+        
+        .welcome-text h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .location i {
+            margin-right: 8px;
+        }
+        
+        .temperature {
+            text-align: right;
+        }
+        
+        .temp-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .temp-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f4f7;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+        
+        .view-all {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .crop-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .crop-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .crop-item:hover {
+            background-color: #e8f5e9;
+            transform: translateY(-2px);
+        }
+        
+        .crop-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #2ecc71;
+            font-size: 20px;
+        }
+        
+        .crop-details {
+            flex: 1;
+        }
+        
+        .crop-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-tomato {
+            width: 85%;
+            background-color: #e74c3c;
+        }
+        
+        .progress-rice {
+            width: 72%;
+            background-color: #f39c12;
+        }
+        
+        .progress-carrot {
+            width: 45%;
+            background-color: #3498db;
+        }
+        
+        .progress-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7f8c8d;
+            min-width: 40px;
+        }
+        
+        .crop-status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        .status-excellent {
+            background-color: #e8f6f3;
+            color: #27ae60;
+        }
+        
+        .status-good {
+            background-color: #fef9e7;
+            color: #f39c12;
+        }
+        
+        .status-average {
+            background-color: #fbeee6;
+            color: #e67e22;
+        }
+        
+        .status-poor {
+            background-color: #fdedec;
+            color: #e74c3c;
+        }
+        
+        .weather-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .weather-location {
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .weather-location i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+        
+        .weather-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .weather-icon {
+            font-size: 48px;
+            color: #f39c12;
+            margin-right: 15px;
+        }
+        
+        .weather-temp {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .weather-detail {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .weather-note {
+            text-align: center;
+            padding: 15px;
+            background-color: #e8f4fc;
+            border-radius: 8px;
+            color: #3498db;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="welcome-card">
+            <div class="welcome-text">
+                <h2>Bonjour</h2>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Fambolena</span>
+                </div>
+            </div>
+            <div class="temperature">
+                <div class="temp-value">23.7°C</div>
+                <div class="temp-label">Température actuelle</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-chart-line"></i> Bénéfice
+                </div>
+                <a href="#" class="view-all">Voir tous</a>
+            </div>
+            
+            <div class="crop-list">
+                <div class="crop-item">
+                    <div class="crop-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="crop-details">
+                        <div class="crop-name">Tomates</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-tomato"></div>
+                            </div>
+                            <div class="progress-value">85%</div>
+                        </div>
+                    </div>
+                    <div class="crop-status status-excellent">Excellent</div>
+                </div>
+                
+                <div class="crop-item">
+                    <div class="crop-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="crop-details">
+                        <div class="crop-name">Riz</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-rice"></div>
+                            </div>
+                            <div class="progress-value">72%</div>
+                        </div>
+                    </div>
+                    <div class="crop-status status-good">Bon</div>
+                </div>
+                
+                <div class="crop-item">
+                    <div class="crop-icon">
+                        <i class="fas fa-carrot"></i>
+                    </div>
+                    <div class="crop-details">
+                        <div class="crop-name">Carrottes</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-carrot"></div>
+                            </div>
+                            <div class="progress-value">45%</div>
+                        </div>
+                    </div>
+                    <div class="crop-status status-average">Peut être amélioré</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card weather-card">
+            <div class="weather-header">
+                <div class="card-title">
+                    <i class="fas fa-cloud-sun"></i> Météo
+                </div>
+                <div class="weather-location">
+                    <i class="fas fa-map-marker-alt"></i> Antananarivo
+                </div>
+            </div>
+            
+            <div class="weather-main">
+                <div class="weather-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="weather-temp">23.7°C</div>
+            </div>
+            
+            <div class="weather-details">
+                <div class="weather-detail">
+                    <div class="detail-value">0%</div>
+                    <div class="detail-label">Humidité</div>
+                </div>
+                
+                <div class="weather-detail">
+                    <div class="detail-value">23.4 km/h</div>
+                    <div class="detail-label">Vent</div>
+                </div>
+                
+                <div class="weather-detail">
+                    <div class="detail-value">Ensoleillé</div>
+                    <div class="detail-label">Conditions</div>
+                </div>
+            </div>
+            
+            <div class="weather-note">
+                Conditions parfaites pour les activités agricoles en plein air
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple interactions for demonstration
+        document.querySelectorAll('.crop-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const cropName = this.querySelector('.crop-name').textContent;
+                alert(`Détails du bénéfice pour: ${cropName}`);
+            });
+        });
+        
+        document.querySelector('.view-all').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Affichage de tous les bénéfices');
+        });
+    </script>
+</body>
+</html>
