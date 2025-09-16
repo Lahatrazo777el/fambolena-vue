@@ -14,7 +14,7 @@ import {
 const user = ref({
   name: 'Vonjy Rabe',
   role: 'Fermier',
-  email: 'john@greenfarm.com',
+  email: 'test@example.com',
   phone: '+261 XX XX XXX XX',
   location: 'Antananarivo'
 });

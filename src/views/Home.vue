@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-import { Apple, Sprout, Carrot } from "lucide-vue-next";
+import { Apple, Sprout, Carrot, CloudSun, LocationEdit, MapPin } from "lucide-vue-next";
 
 const userLocation = ref('Fambolena');
 const temperature = ref(23.7);
@@ -47,7 +47,7 @@ const getCropColor = (name) => {
         <h2>Bonjour</h2>
         <div class="location">
           <i class="fas fa-map-marker-alt"></i>
-          <span>{{ userLocation }}</span>
+          <span>Bienvenue sur {{ userLocation }}</span>
         </div>
       </div>
       <div class="temperature">
@@ -88,10 +88,10 @@ const getCropColor = (name) => {
     <div class="card weather-card">
       <div class="weather-header">
         <div class="card-title">
-          <i class="fas fa-cloud-sun"></i> Météo
+          <CloudSun/> Météo
         </div>
         <div class="weather-location">
-          <i class="fas fa-map-marker-alt"></i> {{ weather.location }}
+          <MapPin/> {{ weather.location }}
         </div>
       </div>
 

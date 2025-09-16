@@ -85,10 +85,6 @@ const handleForgotPassword = () => {
       />
       <Lock class="input-icon" />
     </div>
-      <div class="remember-me">
-        <input type="checkbox" id="remember">
-        <label for="remember">Se souvenir de moi</label>
-      </div>
 
       <div class="forgot-password">
         <a href="#" @click.prevent="handleForgotPassword">Mot de passe oublié?</a>
@@ -112,7 +108,7 @@ const handleForgotPassword = () => {
 <style scoped>
 /* Copie de ton CSS HTML, avec quelques ajustements pour Vue */
 
-.container { max-width: 500px; width: 100%; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+.container { max-width: 700px; width: 100%; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
 .icon {
   width: 18px;
   height: 18px;
@@ -143,7 +139,7 @@ label i { margin-right: 10px; color: #2ecc71; }
 .remember-me label { font-size: 14px; color: #7f8c8d; font-weight: normal; margin: 0; }
 
 .forgot-password { text-align: right; margin-bottom: 25px; }
-.forgot-password a { color: #3498db; text-decoration: none; font-weight: 600; font-size: 14px; }
+.forgot-password a { color: #2ecc71; text-decoration: none; font-weight: 600; font-size: 14px; }
 .forgot-password a:hover { text-decoration: underline; }
 
 .divider { height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 30px 0; }

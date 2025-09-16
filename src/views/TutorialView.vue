@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { Sprout, Droplets, Leaf, CloudSun } from "lucide-vue-next";
+import { Sprout, Droplets, Leaf, CloudSun, BugIcon } from "lucide-vue-next";
 
 // Liste des cours
 const courses = ref([
@@ -25,25 +25,26 @@ const courses = ref([
     category: "irrigation",
   },
   {
-    title: "Gestion naturelle des parasites",
+    title: "Analyse des conditions météorologiques",
     description:
-      "Découvrez des méthodes écologiques pour protéger vos cultures contre les parasites sans utiliser de produits chimiques.",
-    icon: Leaf,
-    duration: "15 min",
-    level: "Avancé",
-    levelClass: "level-advanced",
-    category: "cultivation",
-  },
-  {
-    title: "Agriculture et changements climatiques",
-    description:
-      "Adaptez vos pratiques agricoles face aux défis climatiques et apprenez à anticiper les variations météorologiques.",
+      "Comprendre les prévisions météorologiques pour une meilleure planification des cultures.",
     icon: CloudSun,
-    duration: "10 min",
-    level: "Intermédiaire",
-    levelClass: "level-intermediate",
+    duration: "6 min",
+    level: "Débutant",
+    levelClass: "level-beginner",
     category: "climate",
   },
+  {
+    title: "Lutte antiparasitaire naturelle",
+    description:
+      "Méthodes écologiques pour protéger vos cultures.",
+    icon: BugIcon,
+    duration: "10 min",
+    level: "Avancé",
+    levelClass: "level-advanced",
+    category: "parasite",
+  }
+  
 ]);
 
 // Filtrage des cours
@@ -53,7 +54,8 @@ const filters = ref([
   { label: 'Tous', value: 'all' },
   { label: 'Cultivation', value: 'cultivation' },
   { label: 'Irrigation', value: 'irrigation' },
-  { label: 'Climat', value: 'climate' }
+  { label: 'Climat', value: 'climate' },
+    { label: 'Parasite', value: 'parasite' }
 ]);
 
 const filteredCourses = computed(() => {

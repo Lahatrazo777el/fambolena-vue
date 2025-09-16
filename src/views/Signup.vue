@@ -54,49 +54,46 @@ const goToLogin = () => {
     <div class="form-container">
       <div class="form-section">
         <div class="section-title">
-          <UserIcon/> Créer un compte
+         Créer un compte
         </div>
         <p style="color: #7f8c8d; margin-bottom: 20px;">La création d'un compte est obligatoire</p>
 
         <div class="input-group">
           <label><UserIcon/> Nom complet</label>
-          <input type="text" v-model="fullname" placeholder="Votre nom complet">
-          <UserIcon class=" input-icon"></UserIcon>
+          <input type="text" v-model="fullname" placeholder="">
+          
         </div>
 
         <div class="input-group">
           <label><Mail/> E-mail</label>
-          <input type="email" v-model="email" placeholder="exemple@email.com">
-          <Mail class=" input-icon"></Mail>
+          <input type="email" v-model="email" placeholder="">
+          
         </div>
 
         <div class="input-group">
           <label><PhoneIcon/> Numéro de téléphone</label>
-          <input type="tel" v-model="phone" placeholder="+261 XX XX XXX XX">
-          <PhoneIcon class="input-icon"></PhoneIcon>
+          <input type="tel" v-model="phone" placeholder="">
         </div>
 
         <div class="input-group">
           <label><Lock/> Mot de passe</label>
-          <input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Créez un mot de passe sécurisé">
-          <i class="fas password-toggle" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'" @click="togglePassword"></i>
-          <Lock class="input-icon"></Lock>
+          <input :type="showPassword ? 'text' : 'password'" v-model="password" >
+          <Eye class="password-toggle" @click="togglePassword"/>
         </div>
 
         <div class="input-group">
           <label><Lock/> Confirmez votre mot de passe</label>
-          <input :type="showConfirmPassword ? 'text' : 'password'" v-model="confirmPassword" placeholder="Confirmez votre mot de passe">
-          <i class="fas password-toggle" :class="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'" @click="toggleConfirmPassword"></i>
-          <Lock class=" input-icon"></Lock>
+          <input :type="showConfirmPassword ? 'text' : 'password'" v-model="confirmPassword" placeholder="">
+          <Eye class="password-toggle" @click="toggleConfirmPassword"/>
         </div>
 
         <div class="checkbox-group">
           <input type="checkbox" v-model="terms" id="terms">
-          <label for="terms" class="checkbox-label">
+          <p class="checkbox-label">
             En vous inscrivant, vous acceptez nos
             <a href="#">Conditions d'utilisation</a> et notre
             <a href="#">Politique de confidentialité</a>
-          </label>
+          </p>
         </div>
       </div>
 
@@ -118,14 +115,14 @@ const goToLogin = () => {
 <style scoped>
 /* Copie ton CSS HTML et adapte si nécessaire */
 
-.container { max-width: 500px; width: 100%; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+.container { max-width: 700px; width: 100%; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
 header { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 30px; text-align: center; }
 h1 { font-size: 28px; margin-bottom: 10px; }
 .subtitle { font-size: 16px; opacity: 0.9; }
 
 .form-container { padding: 30px; }
 .form-section { margin-bottom: 25px; }
-.section-title { font-size: 18px; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; display: flex; align-items: center; }
+.section-title { font-size: 25px; margin-left: 30%; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; display: flex; align-items: center; }
 .section-title i { margin-right: 10px; color: #2ecc71; }
 
 .input-group { margin-bottom: 20px; position: relative; }
@@ -139,7 +136,7 @@ label i { margin-right: 10px; color: #2ecc71; }
 
 .checkbox-group { display: flex; align-items: flex-start; margin: 25px 0; }
 .checkbox-group input { margin-right: 15px; margin-top: 5px; accent-color: #2ecc71; }
-.checkbox-label { font-size: 14px; color: #7f8c8d; line-height: 1.5; }
+.checkbox-label { font-size: 14px; line-height: 1.5; }
 .checkbox-label a { color: #2ecc71; text-decoration: none; font-weight: 600; }
 .checkbox-label a:hover { text-decoration: underline; }
 

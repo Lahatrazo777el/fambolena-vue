@@ -33,8 +33,8 @@ const logout = () => {
         <li><RouterLink to="/">Accueil</RouterLink></li>
         <li><RouterLink to="/tutorials">Conseil</RouterLink></li>
         <li><RouterLink to="/calendar">Calendrier</RouterLink></li>
-        <li><RouterLink to="/profits">Bénéfices</RouterLink></li>
         <li><RouterLink to="/posts">Postes</RouterLink></li>
+        <li><RouterLink to="/profits">Bénéfices</RouterLink></li>
       </ul>
 
       <div v-if="user" class="profile">
